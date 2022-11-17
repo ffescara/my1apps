@@ -1,6 +1,9 @@
 package com.ffescara.my1apps.ui
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ffescara.my1apps.model.Article
@@ -9,7 +12,10 @@ import kotlinx.coroutines.launch
 
 class NewsViewModel : ViewModel() {
 
+    var newsUiState: List<Article> by mutableStateOf(listOf())
+
     init {
+        //println("test")
         getListNews()
     }
 
@@ -19,9 +25,11 @@ class NewsViewModel : ViewModel() {
             val articles = response.articles
 
             articles.forEach{ article: Article ->
-                Log.d("response", "tes")
+                println(article.toString())
                 Log.d("response", article.toString())
             }
+
+            newsUiState = response.articles
         }
     }
 }

@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-private val BASE_URL = "https://newsapi.org/v2/"
+private val BASE_URL = "https://run.mocky.io/"
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
@@ -13,9 +13,11 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface NewsAPIService {
-    @GET("top-headlines?country=us&apiKey=6bca55d0c42d4ce7993692ee340f1e26")
-    suspend fun GetTopHeadline(): NewsData
+    @GET("everything?q=bitcoin&apiKey=6bca55d0c42d4ce7993692ee340f1e26")
+    suspend fun GetEverything(): String
 
+    @GET("v3/4a6b4002-e45f-4ffd-8b9e-508419c6ff0a")
+    suspend fun GetTopHeadline(): NewsData
 }
 
 object Api {
